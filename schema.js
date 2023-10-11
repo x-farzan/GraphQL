@@ -15,7 +15,7 @@ export const typeDefs = `#graphql
     type Author {
         id: ID!
         name: String!
-        verified: boolean!
+        verified: Boolean!
     }
     # Below ----type Query {} --- is Essential as it explains the exposed types and return types
     type Query {
