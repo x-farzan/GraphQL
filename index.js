@@ -12,11 +12,20 @@ const resolvers = {
     games() {
       return _db.games;
     },
+    game(parent, args, context) {
+      return _db.games.find((review) => game.id === args.id);
+    },
     authors() {
       return _db.authors;
     },
+    author(parent, args, context) {
+      return _db.authors.find((review) => author.id === args.id);
+    },
     reviews() {
       return _db.reviews;
+    },
+    review(parent, args, context) {
+      return _db.reviews.find((review) => review.id === args.id);
     },
   },
 };

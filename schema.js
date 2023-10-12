@@ -20,7 +20,10 @@ export const typeDefs = `#graphql
     # Below ----type Query {} --- is Essential as it explains the exposed types and return types
     type Query {
         games: [Game]
+        game(id: ID!): Game
         reviews: [Review]
+        review(id: ID!): Review 
         authors: [Author]
+        author(id: ID!): Author
     }
 `;
