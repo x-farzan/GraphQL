@@ -12,20 +12,42 @@ const resolvers = {
     games() {
       return _db.games;
     },
-    game(parent, args, context) {
-      return _db.games.find((review) => game.id === args.id);
+    game(_, args) {
+      return _db.games.find((game) => game.id === args.id);
     },
     authors() {
       return _db.authors;
     },
-    author(parent, args, context) {
-      return _db.authors.find((review) => author.id === args.id);
+    author(_, args) {
+      return _db.authors.find((author) => author.id === args.id);
     },
     reviews() {
       return _db.reviews;
     },
-    review(parent, args, context) {
+    review(_, args) {
       return _db.reviews.find((review) => review.id === args.id);
+    },
+  },
+  /**
+   * ---- Joins ----
+   * @description > The following game query is extension of above game(parent, args, complex) function extension.
+   */
+  Game: {
+    reviews(parent) {
+      return _db.reviews.filter((r) => r.game_id === parent.id);
+    },
+  },
+  Review: {
+    author(parent) {
+      return _db.authors.find((a) => a.id === parent.author_id);
+    },
+    game(parent) {
+      return _db.games.find((g) => g.id === parent.game_id);
+    },
+  },
+  Author: {
+    reviews(parent) {
+      return _db.reviews.filter((r) => r.author_id === parent.id);
     },
   },
 };
