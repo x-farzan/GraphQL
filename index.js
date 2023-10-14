@@ -50,6 +50,21 @@ const resolvers = {
       return _db.reviews.filter((r) => r.author_id === parent.id);
     },
   },
+  Mutation: {
+    addGame(parent, args, context) {
+      const game = {
+        ...args.game,
+        id: Math.floor(Math.random() * 1000).toString(),
+      };
+      _db.games.push(game);
+
+      return game;
+    },
+    deleteGame(parent, args, context) {
+      _db.games = _db.games.filter((g) => g.id !== args.id);
+      return _db.games;
+    },
+  },
 };
 
 // server setup
