@@ -64,6 +64,16 @@ const resolvers = {
       _db.games = _db.games.filter((g) => g.id !== args.id);
       return _db.games;
     },
+    updateGame(parent, args, context) {
+      _db.games = _db.games.map((g) => {
+        if (g.id === args.id) {
+          return { ...g, ...args.edits };
+        }
+        return g;
+      });
+
+      return _db.games.find((g) => g.id === args.id);
+    },
   },
 };
 
